@@ -18,6 +18,7 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_olcex"]
 shader = ExtResource("1_kymk1")
+shader_parameter/colour = Color(1, 1, 1, 1)
 shader_parameter/alpha_texture = SubResource("GradientTexture2D_oa5u8")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a50yp"]
@@ -35,3 +36,6 @@ texture = ExtResource("2_funck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseCollider"]
 shape = SubResource("CircleShape2D_a50yp")
+
+[connection signal="mouse_entered" from="MouseCollider" to="." method="_on_mouse_collider_mouse_entered"]
+[connection signal="mouse_exited" from="MouseCollider" to="." method="_on_mouse_collider_mouse_exited"]
