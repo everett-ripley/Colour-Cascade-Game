@@ -9,9 +9,48 @@
 
 [node name="ColourNode" parent="." instance=ExtResource("1_hvmow")]
 position = Vector2(195, 122)
-starting_node = true
-colour = 2
 
 [node name="ColourNode2" parent="." instance=ExtResource("1_hvmow")]
 position = Vector2(412, 256)
+colour = 1
+
+[node name="ColourNode3" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(586, 170)
+colour = 2
+
+[node name="ColourNode4" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(384, 423)
+starting_node = true
+colour = 3
+
+[node name="ColourNode5" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(956, 229)
+colour = 4
+
+[node name="ColourNode6" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(824, 313)
+colour = 5
+
+[node name="ColourNode7" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(835, 392)
 colour = 6
+
+[node name="ColourNode8" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(663, 472)
+colour = 7
+
+[node name="ColourNode9" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(541, 561)
+colour = 8
+
+[node name="ColourNode10" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(303, 541)
+colour = 9
+
+[node name="ColourNode11" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(185, 443)
+colour = 10
+
+[node name="ColourNode12" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(233, 293)
+colour = 11

@@ -45,6 +45,8 @@ var connections : Array[ColourNode]
 
 var mouse_in_node : bool = false
 
+var mouse:Area2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.material = mat.duplicate()
@@ -52,6 +54,16 @@ func _ready():
 		change_state(states.active)
 	update_colour()
 	
+
+func receive_update(received_colour:int, source:ColourNode):
+	if source.state == states.dead:
+		change_state(states.dead)
+	elif state != states.dead:
+		mix_colours(received_colour, source)
+	await get_tree().create_timer(1.0, false).timeout
+	for node in connections:
+		if node != source:
+			node.receive_update(colour, self)
 
 func mix_colours(received_colour:int, source:ColourNode):
 	var difference : int = abs(received_colour - colour)
@@ -62,9 +74,6 @@ func mix_colours(received_colour:int, source:ColourNode):
 	elif difference == 1:
 		colour = received_colour
 	elif difference < 6:
-		#shift to new colour value
-		#shift_direction = round((difference+0.01)/2) * (difference/(received_colour - colour))# * (2 * int(difference<6) - 1)
-		#colour += shift_direction
 		shift_direction = (colour + received_colour)/2
 		colour = shift_direction
 		
@@ -77,7 +86,7 @@ func mix_colours(received_colour:int, source:ColourNode):
 	elif colour > 11:
 		colour -= 11
 	update_colour()
-	#this part of the function is where the colour node signals the change to other connected nodes
+	
 
 func update_colour():
 	sprite.material.set("shader_parameter/colour", colour_values[colour])
@@ -103,12 +112,16 @@ func _process(delta):
 				add_child(connection)
 				connection.global_position = global_position
 				connection.parent_node = self
+				if mouse != null:
+					mouse.collision(false)
+					connection.mouse = mouse
 		states.dead:
 			pass
 
 
 func _on_mouse_collider_area_entered(area):
 	if area.is_in_group("Mouse"):
+		mouse = area
 		match state:
 			states.inert:
 				pass
