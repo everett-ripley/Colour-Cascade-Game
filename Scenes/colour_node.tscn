@@ -1,25 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://08e5m5y4eibo"]
+[gd_scene load_steps=5 format=3 uid="uid://08e5m5y4eibo"]
 
 [ext_resource type="Script" path="res://Scenes/colour_node.gd" id="1_ban6o"]
-[ext_resource type="Shader" path="res://Shaders/colour_node.gdshader" id="1_kymk1"]
 [ext_resource type="Texture2D" uid="uid://cfrdm8a233s8e" path="res://Assets/colour_node_circle.tres" id="2_funck"]
-
-[sub_resource type="Gradient" id="Gradient_0vfpo"]
-offsets = PackedFloat32Array(0.995708, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_oa5u8"]
-gradient = SubResource("Gradient_0vfpo")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_olcex"]
-shader = ExtResource("1_kymk1")
-shader_parameter/colour = Color(1, 1, 1, 1)
-shader_parameter/alpha_texture = SubResource("GradientTexture2D_oa5u8")
+[ext_resource type="Material" uid="uid://b4mnrfaq5mtu3" path="res://Shaders/colour_node_material.tres" id="2_kyfdg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a50yp"]
 radius = 13.0
@@ -28,11 +11,12 @@ radius = 13.0
 script = ExtResource("1_ban6o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_olcex")
+material = ExtResource("2_kyfdg")
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_funck")
 
 [node name="MouseCollider" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseCollider"]
 shape = SubResource("CircleShape2D_a50yp")
