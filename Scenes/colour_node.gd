@@ -68,7 +68,7 @@ func receive_update(received_colour:int, source:ColourNode):
 func mix_colours(received_colour:int, source:ColourNode):
 	var difference : int = abs(received_colour - colour)
 	var shift_direction:int
-	if difference == 6:#Holy shit, this is bad.
+	if difference == 6 or difference == 0:#Holy shit, this is bad.
 		change_state(states.dead)
 		return
 	elif difference == 1:
