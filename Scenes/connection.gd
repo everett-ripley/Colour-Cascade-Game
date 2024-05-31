@@ -37,6 +37,7 @@ func make_connection():
 	parent_node.connections.append(target_node)
 	parent_node.receive_update(target_node.colour, target_node)
 	target_node.change_state(target_node.states.active)
+	target_node.connect("colour_updated", target_updated)
 
 func interpolate_position(vec:Vector2):
 	line.points[1] = vec
@@ -45,6 +46,11 @@ func interpolate_position(vec:Vector2):
 func update_gradient(color:Vector3, point:int):
 	line.gradient.set_color(point, Color(color[0],color[1],color[2]))
 
+func parent_updated(col:Vector3):
+	update_gradient(col, 0)
+
+func target_updated(col:Vector3):
+	update_gradient(col, 2)
 
 func _on_detector_area_entered(area):
 	if area.is_in_group("ColourNodeArea"):

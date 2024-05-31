@@ -47,6 +47,9 @@ var mouse_in_node : bool = false
 
 var mouse:Area2D
 
+signal colour_updated(new_col:Vector3)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.material = mat.duplicate()
@@ -90,6 +93,7 @@ func mix_colours(received_colour:int, source:ColourNode):
 
 func update_colour():
 	sprite.material.set("shader_parameter/colour", colour_values[colour])
+	emit_signal("colour_updated", colour_values[colour])
 
 func change_state(new:int):
 	match new:
@@ -99,6 +103,7 @@ func change_state(new:int):
 			pass
 		states.dead:
 			sprite.material.set("shader_parameter/colour", Vector3(1.0,1.0,1.0))
+			emit_signal("colour_updated", Vector3(1.0,1.0,1.0))
 	state = new
 
 
@@ -113,6 +118,7 @@ func _process(delta):
 				connection.global_position = global_position
 				connection.parent_node = self
 				connection.update_gradient(colour_values[colour], 0)
+				connect("colour_updated", connection.parent_updated)
 				if mouse != null:
 					mouse.collision(false)
 					connection.mouse = mouse
