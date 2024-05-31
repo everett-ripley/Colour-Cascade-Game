@@ -43,6 +43,7 @@ var state = states.inert
 func _ready():
 	sprite.material = mat.duplicate()
 	update_colour()
+	print(colour)
 	await get_tree().create_timer(1.0).timeout
 	mix_colours(4, self)
 	print(colour)
@@ -53,30 +54,34 @@ func _ready():
 	mix_colours(0, self)
 	print(colour)
 	await get_tree().create_timer(1.0).timeout
-	mix_colours(11, self)
+	mix_colours(10, self)
 	print(colour)
 
 
 func mix_colours(received_colour:int, source:ColourNode):
 	var difference : int = abs(received_colour - colour)
-	if difference == 6:
+	var shift_direction:int
+	if difference == 6:#Holy shit, this is bad.
 		change_state(states.dead)
 		return
 	elif difference == 1:
 		colour = received_colour
-		update_colour()
-	else:
+	elif difference < 6:
 		#shift to new colour value
-		var shift_direction:int = round((difference+0.01)/2) * (difference/(received_colour - colour))# * (2 * int(difference<6) - 1)
+		#shift_direction = round((difference+0.01)/2) * (difference/(received_colour - colour))# * (2 * int(difference<6) - 1)
+		#colour += shift_direction
+		shift_direction = (colour + received_colour)/2
+		colour = shift_direction
 		
-		colour += shift_direction
-		print("true colour", colour)
-		if colour < 0:
-			colour += 11
-		elif colour > 11:
-			colour -= 11
-		update_colour()
-	
+	elif difference > 6:
+		shift_direction = (colour + received_colour)/2
+		colour = (shift_direction + 6)
+		
+	if colour < 0:
+		colour += 11
+	elif colour > 11:
+		colour -= 11
+	update_colour()
 	#this part of the function is where the colour node signals the change to other connected nodes
 
 func update_colour():
