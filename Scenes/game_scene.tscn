@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=3 format=3 uid="uid://bghku48fyicmo"]
+
+[ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
+[ext_resource type="PackedScene" uid="uid://08e5m5y4eibo" path="res://Scenes/colour_node.tscn" id="1_hvmow"]
 
 [node name="GameScene" type="Node2D"]
+
+[node name="Mouse" parent="." instance=ExtResource("1_1ra2c")]
+
+[node name="ColourNode" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(195, 122)
+starting_node = true
+colour = 2
+
+[node name="ColourNode2" parent="." instance=ExtResource("1_hvmow")]
+position = Vector2(412, 256)
+colour = 6

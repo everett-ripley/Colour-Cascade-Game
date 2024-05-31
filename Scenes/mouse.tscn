@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://x5c3f3gcbemu"]
+
+[ext_resource type="Script" path="res://Scenes/mouse.gd" id="1_im5ue"]
+
+[sub_resource type="Gradient" id="Gradient_gqqfj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6hkp3"]
+gradient = SubResource("Gradient_gqqfj")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wr1mv"]
+
+[node name="Mouse" type="Area2D" groups=["Mouse"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_im5ue")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.245, 0.245)
+texture = SubResource("GradientTexture2D_6hkp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wr1mv")

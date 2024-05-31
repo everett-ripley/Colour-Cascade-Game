@@ -1,8 +1,10 @@
 class_name ColourNode
 extends Node2D
 
+@onready var connection_scene := preload("res://Scenes/connection.tscn")
 @onready var mat = preload("res://Shaders/colour_node_material.tres")
 @onready var sprite := $Sprite2D
+@export var starting_node : bool = false
 
 @export_enum("red",
  "red_orange",
@@ -39,24 +41,17 @@ enum states {
 }
 var state = states.inert
 
+var connections : Array[ColourNode]
+
+var mouse_in_node : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.material = mat.duplicate()
+	if starting_node:
+		change_state(states.active)
 	update_colour()
-	print(colour)
-	await get_tree().create_timer(1.0).timeout
-	mix_colours(4, self)
-	print(colour)
-	await get_tree().create_timer(1.0).timeout
-	mix_colours(7, self)
-	print(colour)
-	await get_tree().create_timer(1.0).timeout
-	mix_colours(0, self)
-	print(colour)
-	await get_tree().create_timer(1.0).timeout
-	mix_colours(10, self)
-	print(colour)
-
+	
 
 func mix_colours(received_colour:int, source:ColourNode):
 	var difference : int = abs(received_colour - colour)
@@ -97,21 +92,38 @@ func change_state(new:int):
 			sprite.material.set("shader_parameter/colour", Vector3(1.0,1.0,1.0))
 	state = new
 
-func _on_mouse_collider_mouse_entered():
+
+func _process(delta):
 	match state:
 		states.inert:
 			pass
 		states.active:
-			pass
+			if Input.is_action_just_pressed("LMB") and mouse_in_node:
+				var connection : Connection = connection_scene.instantiate()
+				add_child(connection)
+				connection.global_position = global_position
+				connection.parent_node = self
 		states.dead:
-			return
+			pass
 
 
-func _on_mouse_collider_mouse_exited():
-	match state:
-		states.inert:
-			pass
-		states.active:
-			pass
-		states.dead:
-			return
+func _on_mouse_collider_area_entered(area):
+	if area.is_in_group("Mouse"):
+		match state:
+			states.inert:
+				pass
+			states.active:
+				mouse_in_node = true
+			states.dead:
+				return
+
+
+func _on_mouse_collider_area_exited(area):
+	if area.is_in_group("Mouse"):
+		match state:
+			states.inert:
+				pass
+			states.active:
+				mouse_in_node = false
+			states.dead:
+				return
