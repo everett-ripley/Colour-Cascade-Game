@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://gsrlok0dqg6h"]
+[gd_scene load_steps=4 format=3 uid="uid://gsrlok0dqg6h"]
 
 [ext_resource type="Script" path="res://Scenes/connection.gd" id="1_h7nqd"]
+[ext_resource type="Gradient" uid="uid://dkf8g4tyoh3ud" path="res://Materials/connection_gradient.tres" id="2_5c3vq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nwsl"]
 radius = 1.0
@@ -11,6 +12,7 @@ script = ExtResource("1_h7nqd")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
+gradient = ExtResource("2_5c3vq")
 
 [node name="Detector" type="Area2D" parent="."]
 

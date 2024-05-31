@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b4mnrfaq5mtu3"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dqfpr72jibve6"]
 
 [ext_resource type="Shader" path="res://Shaders/colour_node.gdshader" id="1_dyreo"]
 

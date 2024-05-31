@@ -112,6 +112,7 @@ func _process(delta):
 				add_child(connection)
 				connection.global_position = global_position
 				connection.parent_node = self
+				connection.update_gradient(colour_values[colour], 0)
 				if mouse != null:
 					mouse.collision(false)
 					connection.mouse = mouse

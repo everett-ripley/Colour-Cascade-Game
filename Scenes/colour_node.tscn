@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/colour_node.gd" id="1_ban6o"]
 [ext_resource type="Texture2D" uid="uid://cfrdm8a233s8e" path="res://Assets/colour_node_circle.tres" id="2_funck"]
-[ext_resource type="Material" uid="uid://b4mnrfaq5mtu3" path="res://Shaders/colour_node_material.tres" id="2_kyfdg"]
+[ext_resource type="Material" uid="uid://dqfpr72jibve6" path="res://Shaders/colour_node_material.tres" id="2_kyfdg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a50yp"]
 radius = 13.0

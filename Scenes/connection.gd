@@ -4,9 +4,17 @@ extends Node2D
 @onready var line := $Line2D
 @onready var view_port := get_viewport()
 @onready var detector := $Detector
+@onready var gradient = preload("res://Materials/connection_gradient.tres")
 var parent_node : ColourNode
 var target_node : ColourNode = null
 var mouse:Area2D
+
+
+func _ready():
+	line.gradient = gradient.duplicate()
+	update_gradient(Vector3(1.0,1.0,1.0), 1)
+	update_gradient(Vector3(1.0,1.0,1.0), 1)
+
 
 func _process(delta):
 	line.points[1] = to_local(view_port.get_mouse_position())
@@ -34,13 +42,20 @@ func interpolate_position(vec:Vector2):
 	line.points[1] = vec
 
 
+func update_gradient(color:Vector3, point:int):
+	line.gradient.set_color(point, Color(color[0],color[1],color[2]))
+
+
 func _on_detector_area_entered(area):
 	if area.is_in_group("ColourNodeArea"):
 		target_node = area.get_parent()
-		
+		var tween = create_tween()
+		tween.tween_method(update_gradient.bind(2), Vector3(line.gradient.get_color(2).r, line.gradient.get_color(2).g, line.gradient.get_color(2).b), target_node.colour_values[target_node.colour], 0.3)
+		#update_gradient(2, target_node.colour_values[target_node.colour])
 
 
 func _on_detector_area_exited(area):
 	if area.is_in_group("ColourNodeArea"):
 		target_node = null
-		
+		var tween = create_tween()
+		tween.tween_method(update_gradient.bind(2), Vector3(line.gradient.get_color(2).r, line.gradient.get_color(2).g, line.gradient.get_color(2).b), Vector3(1.0,1.0,1.0), 0.3)
