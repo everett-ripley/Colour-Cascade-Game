@@ -51,6 +51,8 @@ var mouse:Area2D
 
 signal colour_updated(new_col:Vector3)
 
+signal colour_flipped(difference:int)
+
 signal activated
 
 signal dead
@@ -95,6 +97,7 @@ func mix_colours(received_colour:int, source:ColourNode):
 		colour += 11
 	elif colour > 11:
 		colour -= 11
+	emit_signal("colour_flipped", difference)
 	update_colour()
 	
 
@@ -109,10 +112,13 @@ func change_state(new:int):
 			pass
 		states.active:
 			aura.show()
+			emit_signal("activated")
 		states.dead:
 			aura.hide()
 			sprite.material.set("shader_parameter/colour", Vector3(1.0,1.0,1.0))
 			emit_signal("colour_updated", Vector3(1.0,1.0,1.0))
+			if state != states.dead:
+				emit_signal("dead")
 	state = new
 
 

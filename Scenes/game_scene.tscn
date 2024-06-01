@@ -22,8 +22,10 @@ camera = NodePath("../Camera2D")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("mouse")]
 script = ExtResource("3_1kxcd")
 mouse = NodePath("../Mouse")
-acceleration = 25.0
-zoom_rate = 0.75
+initial_speed = 75.0
+max_speed = 350.0
+acceleration = 40.0
+zoom_rate = 1.2
 
 [node name="MouseDetector" type="Area2D" parent="Camera2D"]
 collision_layer = 4
@@ -35,6 +37,10 @@ shape = SubResource("CapsuleShape2D_qnavv")
 
 [node name="StartingNode" parent="." instance=ExtResource("1_hvmow")]
 starting_node = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="area_entered" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_entered"]
 [connection signal="area_exited" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_exited"]

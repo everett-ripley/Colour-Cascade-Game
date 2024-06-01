@@ -23,6 +23,7 @@ func _ready():
 	generate_nodes()
 
 func generate_nodes()->void:
+	var parent = get_parent()
 	var offset : Vector2 = -1 * Vector2(x_units*unit_size, y_units*unit_size) / 2
 	for y in (y_units):
 		for x in (x_units):
@@ -34,6 +35,9 @@ func generate_nodes()->void:
 				var randomness : Vector2 = Vector2(randf_range(-1*shift_randomness, shift_randomness),randf_range(-1*shift_randomness, shift_randomness))
 				new_node.position = Vector2(x,y) * unit_size + randomness + offset
 				colour_nodes.append(new_node)
+				new_node.connect("activated", parent.node_activated)
+				new_node.connect("dead", parent.node_killed)
+				new_node.connect("colour_flipped", parent.node_flipped)
 	
 	if len(colour_nodes) < minimum_nodes:
 		for i in colour_nodes:
