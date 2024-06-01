@@ -22,11 +22,12 @@ func _process(delta):
 
 
 func generate_map():
-	var offset :Vector2 = -1 * initial_size * Vector2(chunk_width, chunk_height) / 2 
+	var offset :Vector2 = -1 * Vector2(chunk_width, chunk_height)
 	for y in initial_size:
 		for x in initial_size:
 			var pos : Vector2 = Vector2(x * chunk_width,y * chunk_height) + offset
 			add_chunk(pos)
+	
 
 func expand_edges():
 	pass

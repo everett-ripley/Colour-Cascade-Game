@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://fmhokpdtyr1q"]
+[gd_scene load_steps=4 format=3 uid="uid://fmhokpdtyr1q"]
 
 [ext_resource type="Script" path="res://Scenes/chunk.gd" id="1_igngr"]
+
+[sub_resource type="Gradient" id="Gradient_a1opq"]
+offsets = PackedFloat32Array(0, 0.0840336)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xaewt"]
+gradient = SubResource("Gradient_a1opq")
+fill_from = Vector2(0.452991, 0.529915)
 
 [node name="Chunk" type="Node2D"]
 script = ExtResource("1_igngr")
 unit_size = 60.0
 x_units = 10
 y_units = 10
-frequency = 1.155
+frequency = 1.35
+
+[node name="DebugSprite" type="Sprite2D" parent="."]
+z_index = -2
+texture = SubResource("GradientTexture2D_xaewt")

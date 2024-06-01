@@ -6,8 +6,10 @@ extends Node2D
 @export var y_units : int = 20
 @export var frequency : float = 1.5
 @export var shift_randomness : float = 15.0
+@export var minimum_nodes : int = 8
 @onready var colour_node_scene := preload("res://Scenes/colour_node.tscn")
 
+var colour_nodes : Array[ColourNode]
 var rng = RandomNumberGenerator.new()
 var noise = FastNoiseLite.new()
 
@@ -17,6 +19,7 @@ func _ready():
 	rng.randomize()
 	noise.seed = randi()
 	noise.fractal_octaves = 8
+	noise.fractal_lacunarity = 10
 	generate_nodes()
 
 func generate_nodes()->void:
@@ -30,3 +33,24 @@ func generate_nodes()->void:
 				add_child(new_node)
 				var randomness : Vector2 = Vector2(randf_range(-1*shift_randomness, shift_randomness),randf_range(-1*shift_randomness, shift_randomness))
 				new_node.position = Vector2(x,y) * unit_size + randomness + offset
+				colour_nodes.append(new_node)
+	
+	if len(colour_nodes) < minimum_nodes:
+		for i in colour_nodes:
+			i.queue_free()
+		colour_nodes = []
+		rng.randomize()
+		noise.seed = randi()
+		generate_nodes()
+		
+	
+	if global_position == Vector2.ZERO:
+		for node in colour_nodes:
+			var pos: Vector2 = node.global_position
+			if -5 < pos.x and pos.x < 5:
+				if -5 < pos.y and pos.x < 5:
+					var index : int = colour_nodes.find(node)
+					colour_nodes.remove_at(index)
+					node.queue_free()
+					
+	print(len(colour_nodes))

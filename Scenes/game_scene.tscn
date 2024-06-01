@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=4 format=3 uid="uid://bghku48fyicmo"]
 
 [ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
 [ext_resource type="Script" path="res://Scenes/game_scene.gd" id="1_8w70b"]
+[ext_resource type="PackedScene" uid="uid://08e5m5y4eibo" path="res://Scenes/colour_node.tscn" id="1_hvmow"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_8w70b")
@@ -10,3 +11,7 @@ script = ExtResource("1_8w70b")
 camera = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.455, 0.455)
+
+[node name="StartingNode" parent="." instance=ExtResource("1_hvmow")]
+starting_node = true

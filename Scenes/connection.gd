@@ -2,7 +2,9 @@ class_name Connection
 extends Node2D
 
 @onready var line := $Line2D
-@onready var view_port := get_viewport()
+#@onready var view_port := get_viewport()
+#@onready var camera: Camera2D = get_viewport().get_camera_2d()
+#@onready var window_size : Vector2 = get_viewport().get_window().size
 @onready var detector := $Detector
 @onready var gradient = preload("res://Materials/connection_gradient.tres")
 var parent_node : ColourNode
@@ -18,7 +20,7 @@ func _ready():
 
 
 func _process(delta):
-	line.points[1] = to_local(view_port.get_mouse_position())
+	line.points[1] = to_local(mouse.global_position)#view_port.get_mouse_position() + (camera.global_position - window_size/2)
 	detector.position = line.points[1]
 	if Input.is_action_just_pressed("LMB") and target_node != null and target_node != parent_node and target_node.state != target_node.states.active:
 		make_connection()
