@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=7 format=3 uid="uid://bghku48fyicmo"]
 
 [ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
 [ext_resource type="Script" path="res://Scenes/game_scene.gd" id="1_8w70b"]
 [ext_resource type="PackedScene" uid="uid://08e5m5y4eibo" path="res://Scenes/colour_node.tscn" id="1_hvmow"]
+[ext_resource type="Script" path="res://Scenes/generation_logic.gd" id="2_5tl61"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="3_1kxcd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnavv"]
@@ -11,6 +12,9 @@ height = 940.0
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_8w70b")
+
+[node name="GenerationLogic" type="Node" parent="."]
+script = ExtResource("2_5tl61")
 
 [node name="Mouse" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_1ra2c")]
 camera = NodePath("../Camera2D")
