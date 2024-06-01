@@ -11,6 +11,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Label.text = str(health)
+	if Input.is_action_just_pressed("Reset"):
+		camera.global_position = Vector2.ZERO
 
 func update_camera_limit(amount:float):
 	camera_limit += amount

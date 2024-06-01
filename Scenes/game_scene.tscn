@@ -1,10 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=10 format=3 uid="uid://bghku48fyicmo"]
 
 [ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
 [ext_resource type="Script" path="res://Scenes/game_scene.gd" id="1_8w70b"]
 [ext_resource type="PackedScene" uid="uid://08e5m5y4eibo" path="res://Scenes/colour_node.tscn" id="1_hvmow"]
 [ext_resource type="Script" path="res://Scenes/generation_logic.gd" id="2_5tl61"]
+[ext_resource type="Material" uid="uid://cpskypnhrpl8e" path="res://Materials/background_material.tres" id="2_hpl4m"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="3_1kxcd"]
+
+[sub_resource type="Gradient" id="Gradient_71757"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2hx2u"]
+gradient = SubResource("Gradient_71757")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnavv"]
 radius = 222.0
@@ -12,6 +20,27 @@ height = 940.0
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_8w70b")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background/Control"]
+material = ExtResource("2_hpl4m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_2hx2u")
 
 [node name="GenerationLogic" type="Node" parent="."]
 script = ExtResource("2_5tl61")
