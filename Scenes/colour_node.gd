@@ -49,6 +49,9 @@ var mouse:Area2D
 
 signal colour_updated(new_col:Vector3)
 
+signal activated
+
+signal dead
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

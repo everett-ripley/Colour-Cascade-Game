@@ -10,8 +10,8 @@ gradient = SubResource("Gradient_gqqfj")
 [sub_resource type="CircleShape2D" id="CircleShape2D_wr1mv"]
 
 [node name="Mouse" type="Area2D" groups=["Mouse"]]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_im5ue")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
