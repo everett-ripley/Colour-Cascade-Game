@@ -1,8 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://08e5m5y4eibo"]
+[gd_scene load_steps=8 format=3 uid="uid://08e5m5y4eibo"]
 
 [ext_resource type="Script" path="res://Scenes/colour_node.gd" id="1_ban6o"]
 [ext_resource type="Texture2D" uid="uid://cfrdm8a233s8e" path="res://Assets/colour_node_circle.tres" id="2_funck"]
 [ext_resource type="Material" uid="uid://dqfpr72jibve6" path="res://Shaders/colour_node_material.tres" id="2_kyfdg"]
+[ext_resource type="Material" uid="uid://dnrchsyfpihd3" path="res://Shaders/aura_shader.tres" id="4_vr6yp"]
+
+[sub_resource type="Gradient" id="Gradient_ruf8m"]
+offsets = PackedFloat32Array(0.986928, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nf1hs"]
+gradient = SubResource("Gradient_ruf8m")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a50yp"]
 radius = 13.0
@@ -11,13 +24,19 @@ radius = 13.0
 script = ExtResource("1_ban6o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 z_index = 1
 material = ExtResource("2_kyfdg")
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_funck")
 
+[node name="AuraSprite" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("4_vr6yp")
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_nf1hs")
+
 [node name="MouseCollider" type="Area2D" parent="." groups=["ColourNodeArea"]]
+visible = false
 collision_layer = 3
 collision_mask = 3
 
@@ -25,6 +44,7 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_a50yp")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 rect = Rect2(-15, -15, 30, 30)
 
 [connection signal="area_entered" from="MouseCollider" to="." method="_on_mouse_collider_area_entered"]

@@ -3,7 +3,9 @@ extends Node2D
 
 @onready var connection_scene := preload("res://Scenes/connection.tscn")
 @onready var mat = preload("res://Shaders/colour_node_material.tres")
+@onready var aura_mat = preload("res://Shaders/aura_shader.tres")
 @onready var sprite := $Sprite2D
+@onready var aura := $AuraSprite
 @export var starting_node : bool = false
 
 @export_enum("red",
@@ -57,6 +59,7 @@ signal dead
 func _ready():
 	colour = randi_range(0, 11)
 	sprite.material = mat.duplicate()
+	aura.material = aura_mat.duplicate()
 	if starting_node:
 		change_state(states.active)
 	update_colour()
@@ -97,6 +100,7 @@ func mix_colours(received_colour:int, source:ColourNode):
 
 func update_colour():
 	sprite.material.set("shader_parameter/colour", colour_values[colour])
+	aura.material.set("shader_parameter/colour", colour_values[colour])
 	emit_signal("colour_updated", colour_values[colour])
 
 func change_state(new:int):
@@ -104,8 +108,9 @@ func change_state(new:int):
 		states.inert:
 			pass
 		states.active:
-			pass
+			aura.show()
 		states.dead:
+			aura.hide()
 			sprite.material.set("shader_parameter/colour", Vector3(1.0,1.0,1.0))
 			emit_signal("colour_updated", Vector3(1.0,1.0,1.0))
 	state = new
