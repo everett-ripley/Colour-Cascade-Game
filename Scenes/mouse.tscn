@@ -10,8 +10,8 @@ gradient = SubResource("Gradient_gqqfj")
 [sub_resource type="CircleShape2D" id="CircleShape2D_wr1mv"]
 
 [node name="Mouse" type="Area2D" groups=["Mouse"]]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_im5ue")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,4 +20,11 @@ scale = Vector2(0.245, 0.245)
 texture = SubResource("GradientTexture2D_6hkp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wr1mv")
+
+[node name="ScreenTracker" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenTracker"]
 shape = SubResource("CircleShape2D_wr1mv")

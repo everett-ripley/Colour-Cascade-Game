@@ -16,10 +16,10 @@ script = ExtResource("1_8w70b")
 camera = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("mouse")]
-position_smoothing_enabled = true
 script = ExtResource("3_1kxcd")
 mouse = NodePath("../Mouse")
 acceleration = 25.0
+zoom_rate = 0.75
 
 [node name="MouseDetector" type="Area2D" parent="Camera2D"]
 collision_layer = 4

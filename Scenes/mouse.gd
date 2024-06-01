@@ -11,7 +11,7 @@ func _ready():
 	
 
 func _process(delta):
-	global_position = viewport.get_mouse_position() + (camera.global_position - window_size/2)
+	global_position = (viewport.get_mouse_position() / camera.zoom.x + (camera.global_position - window_size/(2* camera.zoom.x)))
 
 
 func collision(enable:bool):
