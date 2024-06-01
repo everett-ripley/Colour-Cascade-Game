@@ -15,7 +15,7 @@ var noise = FastNoiseLite.new()
 
 
 func _ready():
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.05).timeout
 	rng.randomize()
 	noise.seed = randi()
 	noise.fractal_octaves = 8

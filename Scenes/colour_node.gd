@@ -151,3 +151,11 @@ func _on_mouse_collider_area_exited(area):
 				mouse_in_node = false
 			states.dead:
 				return
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	sprite.show()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	sprite.hide()
