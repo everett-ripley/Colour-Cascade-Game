@@ -24,7 +24,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	generate_new_chunks_from_position(mouse.global_position/chunk_unit_size)
+	generate_new_chunks_from_position(Vector2(mouse.global_position.x/chunk_width, mouse.global_position.y/chunk_height))
 
 func update_camera_limit(amount:float):
 	camera_limit += amount
@@ -40,7 +40,7 @@ func generate_map():
 		for x in initial_size:
 			var pos : Vector2 = Vector2(x * chunk_width,y * chunk_height) + offset
 			add_chunk(pos)
-			register_chunk(x,y)
+			register_chunk(x-1,y-1)
 	print(generated_chunks)
 
 
@@ -55,10 +55,11 @@ func register_chunk(x,y):
 		generated_chunks[x][y] = true
 	else:
 		generated_chunks[x] = {y : true}
+	print(generated_chunks)
 
 func generate_new_chunk(x,y):
 	if !check_for_chunk(x,y):
-		add_chunk(Vector2(x*chunk_unit_size,y*chunk_unit_size))
+		add_chunk(Vector2(x*chunk_width,y*chunk_height))
 		register_chunk(x,y)
 	pass
 
