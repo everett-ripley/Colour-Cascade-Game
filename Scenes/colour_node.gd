@@ -52,6 +52,7 @@ signal colour_updated(new_col:Vector3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	colour = randi_range(0, 11)
 	sprite.material = mat.duplicate()
 	if starting_node:
 		change_state(states.active)
