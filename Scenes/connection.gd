@@ -82,21 +82,22 @@ func mix_nodes(parent_colour:int, target_colour:int)->Vector3:
 
 func parent_updated(col:Vector3):
 	update_gradient(col, 0)
-	update_gradient(mix_nodes(parent_node.colour, target_node.colour), 1)
-	update_gradient(mix_nodes(parent_node.colour, target_node.colour), 2)
+	#update_gradient(mix_nodes(parent_node.colour, target_node.colour), 1)
+	#update_gradient(mix_nodes(parent_node.colour, target_node.colour), 2)
 
 func target_updated(col:Vector3):
 	update_gradient(col, 3)
-	update_gradient(mix_nodes(parent_node.colour, target_node.colour), 1)
-	update_gradient(mix_nodes(parent_node.colour, target_node.colour), 2)
+	#update_gradient(mix_nodes(parent_node.colour, target_node.colour), 1)
+	#update_gradient(mix_nodes(parent_node.colour, target_node.colour), 2)
 
 func _on_detector_area_entered(area):
 	if area.is_in_group("ColourNodeArea"):
 		target_node = area.get_parent()
 		var tween = create_tween()
 		tween.tween_method(update_gradient.bind(3), Vector3(line.gradient.get_color(3).r, line.gradient.get_color(3).g, line.gradient.get_color(3).b), target_node.colour_values[target_node.colour], 0.3)
-		tween.parallel().tween_method(update_gradient.bind(1), Vector3(line.gradient.get_color(1).r, line.gradient.get_color(1).g, line.gradient.get_color(1).b), mix_nodes(parent_node.colour, target_node.colour), 0.3)
-		tween.parallel().tween_method(update_gradient.bind(2), Vector3(line.gradient.get_color(2).r, line.gradient.get_color(2).g, line.gradient.get_color(2).b), mix_nodes(parent_node.colour, target_node.colour), 0.3)
+		#tween.parallel().tween_method(update_gradient.bind(1), Vector3(line.gradient.get_color(1).r, line.gradient.get_color(1).g, line.gradient.get_color(1).b), mix_nodes(parent_node.colour, target_node.colour), 0.3)
+		#tween.parallel().tween_method(update_gradient.bind(2), Vector3(line.gradient.get_color(2).r, line.gradient.get_color(2).g, line.gradient.get_color(2).b), mix_nodes(parent_node.colour, target_node.colour), 0.3)
+		tween.parallel().tween_method(update_gradient.bind(0), Vector3(line.gradient.get_color(0).r, line.gradient.get_color(0).g, line.gradient.get_color(0).b), mix_nodes(parent_node.colour, target_node.colour), 0.3)
 
 
 func _on_detector_area_exited(area):
@@ -104,5 +105,6 @@ func _on_detector_area_exited(area):
 		target_node = null
 		var tween = create_tween()
 		tween.tween_method(update_gradient.bind(3), Vector3(line.gradient.get_color(3).r, line.gradient.get_color(3).g, line.gradient.get_color(3).b), Vector3(1.0,1.0,1.0), 0.3)
-		tween.parallel().tween_method(update_gradient.bind(1), Vector3(line.gradient.get_color(1).r, line.gradient.get_color(1).g, line.gradient.get_color(1).b), Vector3(1.0,1.0,1.0), 0.3)
-		tween.parallel().tween_method(update_gradient.bind(2), Vector3(line.gradient.get_color(2).r, line.gradient.get_color(2).g, line.gradient.get_color(2).b), Vector3(1.0,1.0,1.0), 0.3)
+		#tween.parallel().tween_method(update_gradient.bind(1), Vector3(line.gradient.get_color(1).r, line.gradient.get_color(1).g, line.gradient.get_color(1).b), Vector3(1.0,1.0,1.0), 0.3)
+		#tween.parallel().tween_method(update_gradient.bind(2), Vector3(line.gradient.get_color(2).r, line.gradient.get_color(2).g, line.gradient.get_color(2).b), Vector3(1.0,1.0,1.0), 0.3)
+		tween.parallel().tween_method(update_gradient.bind(0), Vector3(line.gradient.get_color(0).r, line.gradient.get_color(0).g, line.gradient.get_color(0).b), parent_node.colour_values[parent_node.colour], 0.3)
