@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm4g2hw05gsj8"]
+[gd_scene load_steps=8 format=3 uid="uid://bm4g2hw05gsj8"]
 
 [ext_resource type="FontFile" uid="uid://cnqaijndlvq85" path="res://fonts/Silkscreen/slkscreb.ttf" id="1_o5d7m"]
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ux5vs"]
+[ext_resource type="Script" path="res://Scenes/data.gd" id="2_76pnn"]
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="2_qlsa0"]
 [ext_resource type="FontFile" uid="uid://baefd2fdohfp5" path="res://fonts/Silkscreen/slkscrb.ttf" id="4_2h43s"]
+[ext_resource type="Script" path="res://Scenes/options_menu.gd" id="5_0ga1m"]
+[ext_resource type="FontFile" uid="uid://pc3qtjn70mh1" path="res://fonts/Silkscreen/slkscr.ttf" id="5_8stvm"]
 
 [node name="Game" type="Node"]
 process_mode = 3
 script = ExtResource("1_ux5vs")
+
+[node name="Data" type="Node" parent="."]
+script = ExtResource("2_76pnn")
 
 [node name="Menus" type="CanvasLayer" parent="."]
 layer = 7
@@ -93,4 +99,87 @@ theme_override_fonts/normal_font = ExtResource("4_2h43s")
 bbcode_enabled = true
 text = "[center][font_size=30]"
 
+[node name="OptionsMenu" type="Control" parent="Menus"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_0ga1m")
+
+[node name="ColorRect" type="ColorRect" parent="Menus/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.0352941, 0.152941, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -170.5
+offset_right = 175.0
+offset_bottom = 170.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/OptionsMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[font_size=45][center]Options"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Menus/OptionsMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_8stvm")
+bbcode_enabled = true
+text = "
+
+[font_size=25]Music"
+
+[node name="MusicSlider" type="HSlider" parent="Menus/OptionsMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 1.0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Menus/OptionsMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_8stvm")
+bbcode_enabled = true
+text = "
+
+[font_size=25]SFX"
+
+[node name="SFXSlider" type="HSlider" parent="Menus/OptionsMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 3.0
+step = 0.01
+value = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menus/OptionsMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="Menus/OptionsMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Close"
+
 [connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer2/Options" to="." method="_on_options_button_down"]
+[connection signal="value_changed" from="Menus/OptionsMenu/VBoxContainer/MusicSlider" to="Menus/OptionsMenu" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Menus/OptionsMenu/VBoxContainer/SFXSlider" to="Menus/OptionsMenu" method="_on_sfx_slider_value_changed"]
+[connection signal="button_down" from="Menus/OptionsMenu/VBoxContainer/HBoxContainer/BackButton" to="Menus/OptionsMenu" method="_on_back_button_button_down"]

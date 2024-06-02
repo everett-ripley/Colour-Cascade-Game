@@ -12,6 +12,7 @@ extends Node2D
 @export var connection_unit_cost : float = 0.2
 
 signal game_over(final_score:int)
+signal show_options
 
 var network_size:=1
 var colours_made:=0

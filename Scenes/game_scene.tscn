@@ -255,6 +255,10 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Resume"
 
+[node name="OptionsButton" type="Button" parent="HudCanvas/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
 [node name="QuitButton" type="Button" parent="HudCanvas/PauseMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -309,6 +313,7 @@ game_root = NodePath("..")
 
 [connection signal="button_down" from="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer4/MenuButton" to="HudCanvas/HUD/GameOverScreen" method="_on_menu_button_button_down"]
 [connection signal="button_down" from="HudCanvas/PauseMenu/VBoxContainer/ResumeButton" to="HudCanvas/PauseMenu" method="_on_resume_button_button_down"]
+[connection signal="button_down" from="HudCanvas/PauseMenu/VBoxContainer/OptionsButton" to="HudCanvas/PauseMenu" method="_on_options_button_button_down"]
 [connection signal="button_down" from="HudCanvas/PauseMenu/VBoxContainer/QuitButton" to="HudCanvas/PauseMenu" method="_on_quit_button_button_down"]
 [connection signal="area_entered" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_entered"]
 [connection signal="area_exited" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_exited"]

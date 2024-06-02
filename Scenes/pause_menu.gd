@@ -23,3 +23,7 @@ func _on_resume_button_button_down():
 func _on_quit_button_button_down():
 	root.end_game()
 	hide()
+
+
+func _on_options_button_button_down():
+	root.emit_signal("show_options")
