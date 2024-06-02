@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=18 format=3 uid="uid://bghku48fyicmo"]
 
 [ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
 [ext_resource type="Script" path="res://Scenes/game_scene.gd" id="1_8w70b"]
@@ -6,6 +6,37 @@
 [ext_resource type="Script" path="res://Scenes/generation_logic.gd" id="2_5tl61"]
 [ext_resource type="Material" uid="uid://cpskypnhrpl8e" path="res://Materials/background_material.tres" id="2_hpl4m"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="3_1kxcd"]
+[ext_resource type="FontFile" uid="uid://cnqaijndlvq85" path="res://fonts/Silkscreen/slkscreb.ttf" id="3_g6j0u"]
+[ext_resource type="FontFile" uid="uid://pc3qtjn70mh1" path="res://fonts/Silkscreen/slkscr.ttf" id="4_qdtsc"]
+
+[sub_resource type="Gradient" id="Gradient_fsvji"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.211765, 0.211765, 0.211765, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_00laa"]
+gradient = SubResource("Gradient_fsvji")
+width = 600
+height = 40
+
+[sub_resource type="Gradient" id="Gradient_0bpva"]
+offsets = PackedFloat32Array(0.996923, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.388235, 0.478431, 0.478431, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aiqd2"]
+gradient = SubResource("Gradient_0bpva")
+width = 600
+height = 40
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_5o38t"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yejhh"]
+gradient = SubResource("Gradient_5o38t")
+width = 600
+height = 40
 
 [sub_resource type="Gradient" id="Gradient_71757"]
 offsets = PackedFloat32Array(1)
@@ -21,10 +52,10 @@ height = 940.0
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_8w70b")
 
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -2
+[node name="HudCanvas" type="CanvasLayer" parent="."]
+layer = 3
 
-[node name="Control" type="Control" parent="Background"]
+[node name="HUD" type="Control" parent="HudCanvas"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +63,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Background/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HudCanvas/HUD"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="HudCanvas/HUD/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1000.0
+step = 0.01
+texture_under = SubResource("GradientTexture2D_00laa")
+texture_over = SubResource("GradientTexture2D_aiqd2")
+texture_progress = SubResource("GradientTexture2D_yejhh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudCanvas/HUD/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HudCanvas/HUD/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_g6j0u")
+bbcode_enabled = true
+text = "[center][font_size=25]Score:"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="HudCanvas/HUD/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[center][font_size=25]0000000"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Background" type="Control" parent="Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background/Background"]
 material = ExtResource("2_hpl4m")
 layout_mode = 1
 anchors_preset = 15
@@ -67,10 +153,6 @@ shape = SubResource("CapsuleShape2D_qnavv")
 [node name="StartingNode" parent="." node_paths=PackedStringArray("game_root") instance=ExtResource("1_hvmow")]
 starting_node = true
 game_root = NodePath("..")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [connection signal="area_entered" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_entered"]
 [connection signal="area_exited" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_exited"]
