@@ -73,6 +73,7 @@ theme_override_fonts/normal_font = ExtResource("1_o5d7m")
 bbcode_enabled = true
 text = "[center][font_size=50]Colour Cascade
 [font_size=25]------------------------------"
+scroll_active = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menus/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
@@ -112,6 +113,7 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_2h43s")
 bbcode_enabled = true
 text = "[center][font_size=30]"
+scroll_active = false
 
 [node name="OptionsMenu" type="Control" parent="Menus"]
 visible = false
@@ -153,6 +155,7 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_o5d7m")
 bbcode_enabled = true
 text = "[font_size=45][center]Options"
+scroll_active = false
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Menus/OptionsMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
@@ -162,6 +165,7 @@ bbcode_enabled = true
 text = "
 
 [font_size=25]Music"
+scroll_active = false
 
 [node name="MusicSlider" type="HSlider" parent="Menus/OptionsMenu/VBoxContainer"]
 layout_mode = 2
@@ -177,6 +181,7 @@ bbcode_enabled = true
 text = "
 
 [font_size=25]SFX"
+scroll_active = false
 
 [node name="SFXSlider" type="HSlider" parent="Menus/OptionsMenu/VBoxContainer"]
 layout_mode = 2
