@@ -22,7 +22,7 @@ func _ready():
 func _process(delta):
 	line.points[1] = to_local(mouse.global_position)#view_port.get_mouse_position() + (camera.global_position - window_size/2)
 	detector.position = line.points[1]
-	if Input.is_action_just_pressed("LMB") and target_node != null and target_node != parent_node and target_node.state != target_node.states.active:
+	if Input.is_action_just_pressed("LMB") and target_node != null and target_node != parent_node and target_node.state == target_node.states.inert:
 		make_connection()
 		if mouse != null:
 			mouse.collision(true)

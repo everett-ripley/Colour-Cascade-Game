@@ -6,6 +6,7 @@ extends Node2D
 @onready var aura_mat = preload("res://Shaders/aura_shader.tres")
 @onready var sprite := $Sprite2D
 @onready var aura := $AuraSprite
+@onready var shockwave := $ShockWave
 @export var starting_node : bool = false
 @export var game_root:Node2D
 @export_enum("red",
@@ -62,10 +63,11 @@ func _ready():
 	colour = randi_range(0, 11)
 	sprite.material = mat.duplicate()
 	aura.material = aura_mat.duplicate()
+	shockwave.material = shockwave.material.duplicate()
 	if starting_node:
 		change_state(states.active)
-	update_colour()
-	
+	update_colour(false)
+	update_shockwave(Vector3.ZERO)
 
 func receive_update(received_colour:int, source:ColourNode):
 	if source.state == states.dead:
@@ -101,10 +103,22 @@ func mix_colours(received_colour:int, source:ColourNode):
 	update_colour()
 	
 
-func update_colour():
+func update_colour(emit_shockwave:bool=true):
 	sprite.material.set("shader_parameter/colour", colour_values[colour])
 	aura.material.set("shader_parameter/colour", colour_values[colour])
+	shockwave.material.set("shader_parameter/colour", colour_values[colour])
 	emit_signal("colour_updated", colour_values[colour])
+	if emit_shockwave:
+		var tween = create_tween()
+		tween.tween_method(update_shockwave, Vector3(0.5, 0.0, 0.4), Vector3(0.0, 0.425, 0.0), 0.9)
+
+
+func update_shockwave(force_size_alpha:Vector3):
+	shockwave.material.set("shader_parameter/force", force_size_alpha[0])
+	shockwave.material.set("shader_parameter/size", force_size_alpha[1])
+	shockwave.material.set("shader_parameter/alpha", force_size_alpha[2])
+	
+
 
 func change_state(new:int):
 	match new:

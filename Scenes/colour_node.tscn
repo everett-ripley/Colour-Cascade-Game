@@ -1,9 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://08e5m5y4eibo"]
+[gd_scene load_steps=12 format=3 uid="uid://08e5m5y4eibo"]
 
 [ext_resource type="Script" path="res://Scenes/colour_node.gd" id="1_ban6o"]
 [ext_resource type="Texture2D" uid="uid://cfrdm8a233s8e" path="res://Assets/colour_node_circle.tres" id="2_funck"]
 [ext_resource type="Material" uid="uid://dqfpr72jibve6" path="res://Shaders/colour_node_material.tres" id="2_kyfdg"]
 [ext_resource type="Material" uid="uid://dnrchsyfpihd3" path="res://Shaders/aura_shader.tres" id="4_vr6yp"]
+[ext_resource type="Shader" path="res://Scenes/shockwave_shader.gdshader" id="5_rkka5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8kdy"]
+shader = ExtResource("5_rkka5")
+shader_parameter/colour = Color(0, 0, 0.568627, 0)
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.37
+shader_parameter/size = 0.425
+shader_parameter/alpha = 0.0
+shader_parameter/thickness = 0.145
+
+[sub_resource type="Gradient" id="Gradient_xf0qh"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xahdp"]
+gradient = SubResource("Gradient_xf0qh")
+width = 256
+height = 256
 
 [sub_resource type="Gradient" id="Gradient_ruf8m"]
 offsets = PackedFloat32Array(0.986928, 1)
@@ -28,6 +47,12 @@ z_index = 1
 material = ExtResource("2_kyfdg")
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_funck")
+
+[node name="ShockWave" type="Sprite2D" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_l8kdy")
+scale = Vector2(0.455, 0.455)
+texture = SubResource("GradientTexture2D_xahdp")
 
 [node name="AuraSprite" type="Sprite2D" parent="."]
 visible = false

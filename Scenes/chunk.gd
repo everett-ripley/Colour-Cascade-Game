@@ -52,8 +52,8 @@ func generate_nodes()->void:
 	if global_position == Vector2.ZERO:
 		for node in colour_nodes:
 			var pos: Vector2 = node.global_position
-			if -5 < pos.x and pos.x < 5:
-				if -5 < pos.y and pos.x < 5:
+			if -5 < pos.x and pos.x < 15:
+				if -5 < pos.y and pos.x < 15:
 					var index : int = colour_nodes.find(node)
 					colour_nodes.remove_at(index)
 					node.queue_free()
