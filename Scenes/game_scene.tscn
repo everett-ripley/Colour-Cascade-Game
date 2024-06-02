@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=19 format=3 uid="uid://bghku48fyicmo"]
 
 [ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
 [ext_resource type="Script" path="res://Scenes/game_scene.gd" id="1_8w70b"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://cpskypnhrpl8e" path="res://Materials/background_material.tres" id="2_hpl4m"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="3_1kxcd"]
 [ext_resource type="FontFile" uid="uid://cnqaijndlvq85" path="res://fonts/Silkscreen/slkscreb.ttf" id="3_g6j0u"]
+[ext_resource type="Script" path="res://Scenes/game_over_menu.gd" id="4_6h2l4"]
 [ext_resource type="FontFile" uid="uid://pc3qtjn70mh1" path="res://fonts/Silkscreen/slkscr.ttf" id="4_qdtsc"]
 
 [sub_resource type="Gradient" id="Gradient_fsvji"]
@@ -50,6 +51,7 @@ radius = 222.0
 height = 940.0
 
 [node name="GameScene" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_8w70b")
 
 [node name="HudCanvas" type="CanvasLayer" parent="."]
@@ -107,6 +109,113 @@ theme_override_fonts/normal_font = ExtResource("4_qdtsc")
 bbcode_enabled = true
 text = "[center][font_size=25]0000000"
 
+[node name="GameOverScreen" type="Control" parent="HudCanvas/HUD"]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_6h2l4")
+
+[node name="ColorRect" type="ColorRect" parent="HudCanvas/HUD/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.27451, 0.407843, 0.490196)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudCanvas/HUD/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -157.5
+offset_right = 202.0
+offset_bottom = 157.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_g6j0u")
+bbcode_enabled = true
+text = "[center][font_size=30]Game Over"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[font_size=20]Network Size:"
+
+[node name="NetworkSizeLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[right][font_size=20]"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[font_size=20]Colours Made:"
+
+[node name="ColoursMadeLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[right][font_size=20]"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[font_size=25]Total Score:"
+
+[node name="TotalScoreLabel" type="RichTextLabel" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qdtsc")
+bbcode_enabled = true
+text = "[right][font_size=25]"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MenuButton" type="Button" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Menu"
+
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -2
 
@@ -154,5 +263,6 @@ shape = SubResource("CapsuleShape2D_qnavv")
 starting_node = true
 game_root = NodePath("..")
 
+[connection signal="button_down" from="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer4/MenuButton" to="HudCanvas/HUD/GameOverScreen" method="_on_menu_button_button_down"]
 [connection signal="area_entered" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_entered"]
 [connection signal="area_exited" from="Camera2D/MouseDetector" to="Camera2D" method="_on_mouse_detector_area_exited"]
