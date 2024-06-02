@@ -12,6 +12,8 @@ func _ready():
 	get_tree().paused = true
 	data.recover_data()
 	update_high_score(data.high_score)
+	await get_tree().create_timer(0.05).timeout
+	$Cache.queue_free()
 
 
 func _on_start_button_button_down():
