@@ -6,6 +6,7 @@ extends Node2D
 @onready var network_size_label = $HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer/NetworkSizeLabel
 @onready var colours_made_label = $HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer2/ColoursMadeLabel
 @onready var total_score_label = $HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer3/TotalScoreLabel
+@onready var starting_node := $StartingNode
 @export var camera_limit : float = 500.0
 @export var health : float = 1000.0
 @export var connection_unit_cost : float = 0.2
@@ -19,7 +20,9 @@ var dead_nodes:=0
 var score := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	starting_node.connect("activated", node_activated)
+	starting_node.connect("colour_flipped", node_flipped)
+	starting_node.connect("dead", node_killed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,8 +59,8 @@ func node_killed():
 	health = clamp(health - (50 * mod), 0.0, 1000.0)
 	update_health_bar()
 	dead_nodes+=1
-	#if dead_nodes == network_size:- this doesn't seem to work
-	#	end_game()
+	if dead_nodes == network_size:
+		end_game()
 
 func connection_made(length:float):
 	health = clamp(health - length * connection_unit_cost, 0.0, 1000.0)
