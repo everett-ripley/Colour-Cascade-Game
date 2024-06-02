@@ -70,14 +70,8 @@ func update_health_bar():
 		end_game()
 
 func end_game():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	game_over_screen.game_over()
-	#get_tree().paused = true
-	#game_over_screen.show()
-	#var tween = create_tween()
-	#tween.tween_property(game_over_screen, "modulate", Color(1.0,1.0,1.0,1.0), 0.8)
-	#network_size_label.text = "[right][font_size=20]" + str(network_size)
-	#colours_made_label.text = "[right][font_size=20]" + str(colours_made)
-	#total_score_label.text = "[right][font_size=25]" + str(score)
 
 func tween_score(amount:int):
 	#var old := int(score_label.text)

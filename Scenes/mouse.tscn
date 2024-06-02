@@ -3,9 +3,14 @@
 [ext_resource type="Script" path="res://Scenes/mouse.gd" id="1_im5ue"]
 
 [sub_resource type="Gradient" id="Gradient_gqqfj"]
+offsets = PackedFloat32Array(0, 0.961424, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6hkp3"]
 gradient = SubResource("Gradient_gqqfj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wr1mv"]
 
@@ -16,7 +21,7 @@ script = ExtResource("1_im5ue")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
-scale = Vector2(0.245, 0.245)
+scale = Vector2(0.315, 0.315)
 texture = SubResource("GradientTexture2D_6hkp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
