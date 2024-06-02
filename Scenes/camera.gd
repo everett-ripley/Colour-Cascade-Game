@@ -16,6 +16,8 @@ var initial_radius : float
 
 
 func _ready():
+	collision_shape.shape.height = 940
+	collision_shape.shape.radius = 222
 	initial_height = collision_shape.shape.height
 	initial_radius = collision_shape.shape.radius
 

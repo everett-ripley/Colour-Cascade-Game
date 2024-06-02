@@ -50,3 +50,7 @@ func _on_options_button_down():
 func _on_reset_button_button_down():
 	data.reset_data()
 	update_high_score(data.high_score)
+
+
+func _on_exit_button_button_down():
+	get_tree().quit()

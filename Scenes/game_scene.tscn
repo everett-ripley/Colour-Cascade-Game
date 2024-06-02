@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bghku48fyicmo"]
+[gd_scene load_steps=21 format=3 uid="uid://bghku48fyicmo"]
 
 [ext_resource type="PackedScene" uid="uid://x5c3f3gcbemu" path="res://Scenes/mouse.tscn" id="1_1ra2c"]
 [ext_resource type="Script" path="res://Scenes/game_scene.gd" id="1_8w70b"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/game_over_menu.gd" id="4_6h2l4"]
 [ext_resource type="FontFile" uid="uid://pc3qtjn70mh1" path="res://fonts/Silkscreen/slkscr.ttf" id="4_qdtsc"]
 [ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="5_8ou5d"]
+[ext_resource type="Theme" uid="uid://plq4arphi22k" path="res://Materials/button_theme.tres" id="6_5sy3h"]
 
 [sub_resource type="Gradient" id="Gradient_fsvji"]
 offsets = PackedFloat32Array(0)
@@ -217,6 +218,7 @@ alignment = 1
 
 [node name="MenuButton" type="Button" parent="HudCanvas/HUD/GameOverScreen/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+theme = ExtResource("6_5sy3h")
 text = "Menu"
 
 [node name="PauseMenu" type="Control" parent="HudCanvas"]
@@ -256,15 +258,18 @@ scroll_active = false
 [node name="ResumeButton" type="Button" parent="HudCanvas/PauseMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("6_5sy3h")
 text = "Resume"
 
 [node name="OptionsButton" type="Button" parent="HudCanvas/PauseMenu/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("6_5sy3h")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="HudCanvas/PauseMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("6_5sy3h")
 text = "Quit"
 
 [node name="Background" type="CanvasLayer" parent="."]

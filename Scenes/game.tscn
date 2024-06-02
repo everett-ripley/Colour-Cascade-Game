@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bm4g2hw05gsj8"]
+[gd_scene load_steps=32 format=3 uid="uid://bm4g2hw05gsj8"]
 
 [ext_resource type="FontFile" uid="uid://cnqaijndlvq85" path="res://fonts/Silkscreen/slkscreb.ttf" id="1_o5d7m"]
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ux5vs"]
@@ -10,6 +10,83 @@
 [ext_resource type="AudioStream" uid="uid://clc1b62qqssy7" path="res://Audio/Music/ChillLofiLoop.wav" id="4_qd23q"]
 [ext_resource type="Script" path="res://Scenes/options_menu.gd" id="5_0ga1m"]
 [ext_resource type="FontFile" uid="uid://pc3qtjn70mh1" path="res://fonts/Silkscreen/slkscr.ttf" id="5_8stvm"]
+[ext_resource type="Theme" uid="uid://plq4arphi22k" path="res://Materials/button_theme.tres" id="8_mnjog"]
+[ext_resource type="Script" path="res://Scenes/tutorial.gd" id="9_5j2y6"]
+[ext_resource type="Texture2D" uid="uid://ov7082u65pxo" path="res://Assets/line_visual.PNG" id="10_fltuh"]
+[ext_resource type="Texture2D" uid="uid://bsbxgy8ox7whs" path="res://Assets/line_visual_2.PNG" id="11_oj0l3"]
+[ext_resource type="Texture2D" uid="uid://ec68s0xdt2al" path="res://Assets/gui_visual.PNG" id="12_srjai"]
+[ext_resource type="Shader" path="res://Scenes/colourwheel.gdshader" id="14_howy6"]
+[ext_resource type="Texture2D" uid="uid://cfrdm8a233s8e" path="res://Assets/colour_node_circle.tres" id="15_hcnrm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u3k1"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(1, 0, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="Gradient" id="Gradient_46f2l"]
+offsets = PackedFloat32Array(0.988131, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t4biv"]
+gradient = SubResource("Gradient_46f2l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjbnf"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(1, 0.3, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2y31"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(1, 0.5, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_744lp"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(1, 0.8, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gsr7"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(1, 1, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dd2vk"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0.75, 1, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_up1kv"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0, 1, 0)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nubse"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0, 0.5, 0.5)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kynd8"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0, 0, 1)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pl472"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0.33, 0, 1)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibs2i"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0.6, 0, 0.6)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y24cj"]
+shader = ExtResource("14_howy6")
+shader_parameter/colour = Vector3(0.8, 0, 0.4)
+shader_parameter/alpha_texture = ExtResource("15_hcnrm")
 
 [node name="Game" type="Node"]
 process_mode = 3
@@ -83,6 +160,7 @@ alignment = 1
 [node name="StartButton" type="Button" parent="Menus/MainMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 theme_override_font_sizes/font_size = 30
 text = "Start Game"
 
@@ -95,16 +173,19 @@ alignment = 1
 [node name="DataButton" type="Button" parent="Menus/MainMenu/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 text = "Data"
 
 [node name="TutorialButton" type="Button" parent="Menus/MainMenu/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 text = "How To Play"
 
 [node name="Options" type="Button" parent="Menus/MainMenu/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 text = "Options"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menus/MainMenu/VBoxContainer"]
@@ -177,12 +258,660 @@ alignment = 1
 [node name="ResetButton" type="Button" parent="Menus/MainMenu/DataReset/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 text = "Yes"
 
 [node name="CloseButton" type="Button" parent="Menus/MainMenu/DataReset/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 text = "No"
+
+[node name="TutorialMenu" type="Control" parent="Menus/MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_5j2y6")
+
+[node name="ColorRect" type="ColorRect" parent="Menus/MainMenu/TutorialMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.0352941, 0.152941, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menus/MainMenu/TutorialMenu"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LeftButton" type="Button" parent="Menus/MainMenu/TutorialMenu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_mnjog")
+theme_override_font_sizes/font_size = 100
+text = "<"
+
+[node name="Contents" type="PanelContainer" parent="Menus/MainMenu/TutorialMenu/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="Page1Controls" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page1Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[center][font_size=45]Controls
+
+[font_size=20]Move with the mouse
+
+Zoom camera with mouse wheel
+
+Create new connections with left mouse button
+
+Destroy active connection with right mouse button
+
+Pause with 'p' or 'esc'
+
+Return to the origin point with 'r'"
+
+[node name="Page2Objective" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[font_size=15]When hovering a new connection over an unconnected node, the colour that the original node will change to is shown by the connection."
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+texture = ExtResource("10_fltuh")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[font_size=15]If that colour is white, then that connection will kill the node, and all previous nodes in the chain.
+
+Connecting a node to another node that's the same or opposite colour will kill the original node."
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+texture = ExtResource("11_oj0l3")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[font_size=15]Don't let the bar fill all the way!
+Changing node colours decreases the bar's progress.
+Nodes dying (changing to white) increases the bar's progress.
+New connections increase the bar's progress."
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+texture = ExtResource("12_srjai")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page2Objective/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8stvm")
+theme_override_font_sizes/font_size = 12
+text = "Sorry about the stretched images"
+horizontal_alignment = 1
+
+[node name="Page3ColourWheel" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pivot" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot"]
+material = SubResource("ShaderMaterial_2u3k1")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot2" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.523599
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot2"]
+material = SubResource("ShaderMaterial_pjbnf")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot3" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.0472
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot3"]
+material = SubResource("ShaderMaterial_o2y31")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot4" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot4"]
+material = SubResource("ShaderMaterial_744lp")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot5" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.0944
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot5"]
+material = SubResource("ShaderMaterial_0gsr7")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot6" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.61799
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot6"]
+material = SubResource("ShaderMaterial_dd2vk")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot7" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot7"]
+material = SubResource("ShaderMaterial_up1kv")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot8" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.66519
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot8"]
+material = SubResource("ShaderMaterial_nubse")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot9" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.18879
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot9"]
+material = SubResource("ShaderMaterial_kynd8")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot10" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.71239
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot10"]
+material = SubResource("ShaderMaterial_pl472")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot11" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 5.23599
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot11"]
+material = SubResource("ShaderMaterial_ibs2i")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="Pivot12" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 5.75959
+pivot_offset = Vector2(20, 20)
+
+[node name="TextureRect" type="TextureRect" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel/Pivot12"]
+material = SubResource("ShaderMaterial_y24cj")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t4biv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page3ColourWheel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[center][font_size=45]Colour Wheel"
+
+[node name="Page4Credits" type="Control" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/MainMenu/TutorialMenu/HBoxContainer/Contents/Panel/Page4Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_o5d7m")
+bbcode_enabled = true
+text = "[center][font_size=45]Credits
+
+[font_size=20]
+Made in 72 hours for the UW Spring 2024 game jam
+
+
+Used the font 'silkscreen', which was found on font squirrel
+
+
+The music is licensed under public domain, and composed by 'omfgdude'
+(https://opengameart.org/content/chill-lofi-inspired)
+
+
+Made with Godot
+
+
+"
+
+[node name="RightButton" type="Button" parent="Menus/MainMenu/TutorialMenu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_mnjog")
+theme_override_font_sizes/font_size = 100
+text = ">"
+
+[node name="CloseButton" type="Button" parent="Menus/MainMenu/TutorialMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -31.0
+offset_right = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_mnjog")
+text = "Close"
+
+[node name="ExitButton" type="Button" parent="Menus/MainMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -69.0
+offset_right = 55.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_mnjog")
+text = "Quit Game"
 
 [node name="OptionsMenu" type="Control" parent="Menus"]
 visible = false
@@ -264,15 +993,21 @@ alignment = 1
 
 [node name="BackButton" type="Button" parent="Menus/OptionsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("8_mnjog")
 text = "Close"
 
 [connection signal="finished" from="Music/Intro" to="Music" method="_on_intro_finished"]
 [connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_button_down"]
 [connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer2/DataButton" to="Menus/MainMenu" method="_on_data_button_button_down"]
+[connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer2/TutorialButton" to="Menus/MainMenu" method="_on_tutorial_button_button_down"]
 [connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer2/Options" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="Menus/MainMenu/DataReset/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_button_down"]
 [connection signal="button_down" from="Menus/MainMenu/DataReset/VBoxContainer/HBoxContainer/ResetButton" to="Menus/MainMenu" method="_on_reset_button_button_down"]
 [connection signal="button_down" from="Menus/MainMenu/DataReset/VBoxContainer/HBoxContainer/CloseButton" to="Menus/MainMenu" method="_on_close_button_button_down"]
+[connection signal="button_down" from="Menus/MainMenu/TutorialMenu/HBoxContainer/LeftButton" to="Menus/MainMenu/TutorialMenu" method="_on_left_button_button_down"]
+[connection signal="button_down" from="Menus/MainMenu/TutorialMenu/HBoxContainer/RightButton" to="Menus/MainMenu/TutorialMenu" method="_on_right_button_button_down"]
+[connection signal="button_down" from="Menus/MainMenu/TutorialMenu/CloseButton" to="Menus/MainMenu/TutorialMenu" method="_on_close_button_button_down"]
+[connection signal="button_down" from="Menus/MainMenu/ExitButton" to="." method="_on_exit_button_button_down"]
 [connection signal="value_changed" from="Menus/OptionsMenu/VBoxContainer/MusicSlider" to="Menus/OptionsMenu" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Menus/OptionsMenu/VBoxContainer/SFXSlider" to="Menus/OptionsMenu" method="_on_sfx_slider_value_changed"]
 [connection signal="button_down" from="Menus/OptionsMenu/VBoxContainer/HBoxContainer/BackButton" to="Menus/OptionsMenu" method="_on_back_button_button_down"]
