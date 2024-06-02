@@ -1,16 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm4g2hw05gsj8"]
+[gd_scene load_steps=11 format=3 uid="uid://bm4g2hw05gsj8"]
 
 [ext_resource type="FontFile" uid="uid://cnqaijndlvq85" path="res://fonts/Silkscreen/slkscreb.ttf" id="1_o5d7m"]
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ux5vs"]
 [ext_resource type="Script" path="res://Scenes/data.gd" id="2_76pnn"]
+[ext_resource type="Script" path="res://Scenes/music.gd" id="2_636ak"]
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="2_qlsa0"]
+[ext_resource type="AudioStream" uid="uid://c0px7s5n6os3" path="res://Audio/Music/ChillLofiIntro.wav" id="3_5eywa"]
 [ext_resource type="FontFile" uid="uid://baefd2fdohfp5" path="res://fonts/Silkscreen/slkscrb.ttf" id="4_2h43s"]
+[ext_resource type="AudioStream" uid="uid://clc1b62qqssy7" path="res://Audio/Music/ChillLofiLoop.wav" id="4_qd23q"]
 [ext_resource type="Script" path="res://Scenes/options_menu.gd" id="5_0ga1m"]
 [ext_resource type="FontFile" uid="uid://pc3qtjn70mh1" path="res://fonts/Silkscreen/slkscr.ttf" id="5_8stvm"]
 
 [node name="Game" type="Node"]
 process_mode = 3
 script = ExtResource("1_ux5vs")
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("2_636ak")
+
+[node name="Intro" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_5eywa")
+bus = &"Music"
+
+[node name="Loop" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_qd23q")
+bus = &"Music"
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource("2_76pnn")
@@ -178,6 +192,7 @@ alignment = 1
 layout_mode = 2
 text = "Close"
 
+[connection signal="finished" from="Music/Intro" to="Music" method="_on_intro_finished"]
 [connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_button_down"]
 [connection signal="button_down" from="Menus/MainMenu/VBoxContainer/HBoxContainer2/Options" to="." method="_on_options_button_down"]
 [connection signal="value_changed" from="Menus/OptionsMenu/VBoxContainer/MusicSlider" to="Menus/OptionsMenu" method="_on_music_slider_value_changed"]
