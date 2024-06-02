@@ -52,11 +52,12 @@ func node_flipped(difference:int):
 	colours_made += 1
 
 func node_killed():
-	health = clamp(health - 50, 0.0, 1000.0)
+	var mod : float = clamp(score/10000, 1.0, 5.0)
+	health = clamp(health - (50 * mod), 0.0, 1000.0)
 	update_health_bar()
 	dead_nodes+=1
-	if dead_nodes == network_size:
-		end_game()
+	#if dead_nodes == network_size:- this doesn't seem to work
+	#	end_game()
 
 func connection_made(length:float):
 	health = clamp(health - length * connection_unit_cost, 0.0, 1000.0)
