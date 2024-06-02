@@ -67,6 +67,7 @@ func update_health_bar():
 	var tween = create_tween()
 	tween.tween_property(health_bar, "value", 1000 - health, 0.1)
 	if health <= 0:
+		await tween.finished
 		end_game()
 
 func end_game():
