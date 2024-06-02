@@ -47,7 +47,7 @@ func zoom_camera(delta:float):
 		zoom_dir = -1
 	else:
 		return
-	zoom.x += zoom_rate * zoom_dir * delta
+	zoom.x += zoom_rate * zoom_dir * delta * 10
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)
 	zoom.y = zoom.x
 	collision_shape.shape.height = initial_height * (1/zoom.x)

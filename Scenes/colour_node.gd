@@ -7,7 +7,7 @@ extends Node2D
 @onready var sprite := $Sprite2D
 @onready var aura := $AuraSprite
 @export var starting_node : bool = false
-
+@export var game_root:Node2D
 @export_enum("red",
  "red_orange",
  "orange",
@@ -134,6 +134,7 @@ func _process(delta):
 				connection.parent_node = self
 				connection.update_gradient(colour_values[colour], 0)
 				connect("colour_updated", connection.parent_updated)
+				connection.game_root = game_root
 				if mouse != null:
 					mouse.collision(false)
 					connection.mouse = mouse

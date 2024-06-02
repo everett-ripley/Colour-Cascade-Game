@@ -14,6 +14,7 @@ void vertex() {
 }
 
 void fragment() {
+	//float noise_colour = texture(noise1, UV + direction1 * TIME).r * texture(noise2, UV + direction2 * TIME).r;
 	vec3 colour = texture(noise1, UV + direction1 * TIME).r * colour1 + texture(noise2, UV + direction2 * TIME).r * colour2;
 	COLOR = vec4(colour, 1.0);
 }

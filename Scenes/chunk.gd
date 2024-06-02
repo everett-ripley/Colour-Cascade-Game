@@ -38,6 +38,7 @@ func generate_nodes()->void:
 				new_node.connect("activated", parent.node_activated)
 				new_node.connect("dead", parent.node_killed)
 				new_node.connect("colour_flipped", parent.node_flipped)
+				new_node.game_root = parent
 	
 	if len(colour_nodes) < minimum_nodes:
 		for i in colour_nodes:

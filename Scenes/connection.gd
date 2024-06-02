@@ -10,7 +10,7 @@ extends Node2D
 var parent_node : ColourNode
 var target_node : ColourNode = null
 var mouse:Area2D
-
+var game_root:Node2D
 
 func _ready():
 	line.gradient = gradient.duplicate()
@@ -26,10 +26,11 @@ func _process(delta):
 		make_connection()
 		if mouse != null:
 			mouse.collision(true)
-	if Input.is_action_just_pressed("RMB"):
+	elif Input.is_action_just_pressed("RMB") or parent_node.state == parent_node.states.dead:
 		if mouse != null:
 			mouse.collision(true)
 		queue_free()
+	
 
 func make_connection():
 	set_process(false)
@@ -41,6 +42,7 @@ func make_connection():
 	parent_node.receive_update(target_node.colour, target_node)
 	target_node.change_state(target_node.states.active)
 	target_node.connect("colour_updated", target_updated)
+	game_root.connection_made(line.points[1].length())
 
 func interpolate_position(vec:Vector2):
 	line.points[1] = vec

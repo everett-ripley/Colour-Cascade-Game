@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://cpskypnhrpl8e"]
 
-[ext_resource type="Shader" path="res://Scenes/background_shader.gdshader" id="1_5ebr0"]
+[ext_resource type="Shader" path="res://Shaders/background_shader.gdshader" id="1_3gfqq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0woec"]
 noise_type = 3
@@ -26,7 +26,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_wvhae")
 
 [resource]
-shader = ExtResource("1_5ebr0")
+shader = ExtResource("1_3gfqq")
 shader_parameter/colour1 = Color(0.129412, 0.0980392, 0.262745, 1)
 shader_parameter/colour2 = Color(0.211765, 0.0196078, 0.145098, 1)
 shader_parameter/direction1 = Vector2(0.05, 0.05)
