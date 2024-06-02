@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://08e5m5y4eibo"]
+[gd_scene load_steps=15 format=3 uid="uid://08e5m5y4eibo"]
 
 [ext_resource type="Script" path="res://Scenes/colour_node.gd" id="1_ban6o"]
 [ext_resource type="Texture2D" uid="uid://cfrdm8a233s8e" path="res://Assets/colour_node_circle.tres" id="2_funck"]
 [ext_resource type="Material" uid="uid://dqfpr72jibve6" path="res://Shaders/colour_node_material.tres" id="2_kyfdg"]
 [ext_resource type="Material" uid="uid://dnrchsyfpihd3" path="res://Shaders/aura_shader.tres" id="4_vr6yp"]
 [ext_resource type="Shader" path="res://Scenes/shockwave_shader.gdshader" id="5_rkka5"]
+[ext_resource type="AudioStream" uid="uid://b5rawj7aqeiqg" path="res://Audio/SFX/node_death.wav" id="6_f1bu4"]
+[ext_resource type="AudioStream" uid="uid://b0tpsyttyr5df" path="res://Audio/SFX/node_hover_2.wav" id="6_hja2v"]
+[ext_resource type="AudioStream" uid="uid://cs57yadsllhj3" path="res://Audio/SFX/node_hover.wav" id="7_8122g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l8kdy"]
 shader = ExtResource("5_rkka5")
@@ -71,6 +74,20 @@ shape = SubResource("CircleShape2D_a50yp")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 visible = false
 rect = Rect2(-15, -15, 30, 30)
+
+[node name="Flipped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_hja2v")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_8122g")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Dead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_f1bu4")
+bus = &"SFX"
 
 [connection signal="area_entered" from="MouseCollider" to="." method="_on_mouse_collider_area_entered"]
 [connection signal="area_exited" from="MouseCollider" to="." method="_on_mouse_collider_area_exited"]

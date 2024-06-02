@@ -7,6 +7,9 @@ extends Node2D
 @onready var sprite := $Sprite2D
 @onready var aura := $AuraSprite
 @onready var shockwave := $ShockWave
+@onready var flipped_audio := $Flipped
+@onready var hover_audio := $Hover
+@onready var dead_audio := $Dead
 @export var starting_node : bool = false
 @export var game_root:Node2D
 @export_enum("red",
@@ -68,6 +71,9 @@ func _ready():
 		change_state(states.active)
 	update_colour(false)
 	update_shockwave(Vector3.ZERO)
+	flipped_audio.pitch_scale = randf_range(0.85,1.15)
+	hover_audio.pitch_scale = randf_range(0.85,1.15)
+	dead_audio.pitch_scale = randf_range(0.85,1.15)
 
 func receive_update(received_colour:int, source:ColourNode):
 	if source.state == states.dead:
@@ -109,6 +115,7 @@ func update_colour(emit_shockwave:bool=true):
 	shockwave.material.set("shader_parameter/colour", colour_values[colour])
 	emit_signal("colour_updated", colour_values[colour])
 	if emit_shockwave:
+		flipped_audio.play()
 		var tween = create_tween()
 		tween.tween_method(update_shockwave, Vector3(0.5, 0.0, 0.4), Vector3(0.0, 0.425, 0.0), 0.9)
 
@@ -132,7 +139,9 @@ func change_state(new:int):
 			sprite.material.set("shader_parameter/colour", Vector3(1.0,1.0,1.0))
 			emit_signal("colour_updated", Vector3(1.0,1.0,1.0))
 			if state != states.dead:
+				await get_tree().create_timer(0.05).timeout
 				emit_signal("dead")
+				dead_audio.play()
 	state = new
 
 
@@ -164,6 +173,9 @@ func _on_mouse_collider_area_entered(area):
 				pass
 			states.active:
 				mouse_in_node = true
+				hover_audio.play()
+				var tween = create_tween()
+				tween.tween_property(sprite, "scale", Vector2(0.06,0.06), 0.1)
 			states.dead:
 				return
 
@@ -175,6 +187,8 @@ func _on_mouse_collider_area_exited(area):
 				pass
 			states.active:
 				mouse_in_node = false
+				var tween = create_tween()
+				tween.tween_property(sprite, "scale", Vector2(0.05,0.05), 0.1)
 			states.dead:
 				return
 
